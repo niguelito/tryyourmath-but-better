@@ -1,8 +1,8 @@
 import { Problem, ProblemConstructor } from "./ProblemGenerator.js"
 
 const TIME_PENALTY = 5;
-const CORRECT_AUDIO = new Audio("./assets/correct.mp3");
-const INCORRECT_AUDIO = new Audio("./assets/answer-wrong.mp3")
+const CORRECT_AUDIO = new Audio("./correct.mp3");
+const INCORRECT_AUDIO = new Audio("./answer-wrong.mp3")
 
 class GameResults {
     constructor(questions, correct) {
