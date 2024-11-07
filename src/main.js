@@ -1,5 +1,15 @@
 import { createApp } from 'vue'
-import './style.css'
+import "./style.css"
 import App from './App.vue'
 
-createApp(App).mount('#app')
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [
+            ['$', '$'],
+            ['\\(', '\\)'],
+        ],
+    },
+    messageStyle: 'none',
+});
+
+createApp(App).mount('#root')
