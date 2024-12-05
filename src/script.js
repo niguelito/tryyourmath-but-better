@@ -1,8 +1,11 @@
+import { onMounted } from "vue";
 import { Problem, ProblemConstructor } from "./ProblemGenerator.js"
 
 const TIME_PENALTY = 5;
 const CORRECT_AUDIO = new Audio("./correct.mp3");
 const INCORRECT_AUDIO = new Audio("./answer-wrong.mp3")
+
+var dataName = "141a43fetryyourmath";
 
 class GameResults {
     constructor(questions, correct) {
@@ -50,6 +53,15 @@ export default {
             interval: 0,
         };
     },
+    mounted() {
+        var data = localStorage.getItem(dataName);
+        if (data) {
+            var stuff = JSON.parse(data);
+
+            this.bestScore = stuff['bestScore'] ? stuff.bestScore : 0;
+            this.oldScore = stuff['oldScore'] ? stuff.oldScore : 0;
+        }
+    },
     methods: {
         formatTime(given_seconds) {
             const dateObj = new Date(given_seconds * 1000);
@@ -85,6 +97,8 @@ export default {
 
             this.bestScore = Math.max(this.bestScore, this.currentScore);
             this.oldScore = this.currentScore;
+
+            localStorage.setItem(dataName, JSON.stringify({bestScore: this.bestScore, oldScore: this.oldScore}))
 
             this.currentScore = 0;
 
